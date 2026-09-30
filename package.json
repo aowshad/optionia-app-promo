@@ -1,0 +1,25 @@
+{
+  "name": "optionia-promo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node render/server.mjs --open",
+    "render": "node render/render.mjs",
+    "render:draft": "node render/render.mjs --draft",
+    "check:determinism": "node render/check-determinism.mjs",
+    "stills": "node render/stills.mjs",
+    "audit": "node render/audit-tweens.mjs",
+    "review": "node render/review.mjs",
+    "audio": "node render/audio.mjs",
+    "build:html": "node render/build-html.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "esbuild": "^0.25.12",
+    "ffmpeg-static": "^5.3.0",
+    "gsap": "^3.15.0",
+    "playwright": "^1.63.0"
+  }
+}

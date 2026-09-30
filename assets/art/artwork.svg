@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <!-- "Stay Curious" — customer print graphic for the upload demo (S4, S8).
+       Bold type under an abstract-geometric sun + orbit in the brand violet→pink range. -->
+  <defs>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F197FE"/>
+      <stop offset=".55" stop-color="#B25CF0"/>
+      <stop offset="1" stop-color="#5F12D4"/>
+    </linearGradient>
+    <clipPath id="disc"><circle cx="500" cy="400" r="270"/></clipPath>
+  </defs>
+
+  <!-- sun disc with horizon stripes -->
+  <circle cx="500" cy="400" r="270" fill="url(#sun)"/>
+  <g clip-path="url(#disc)" fill="#FFFFFF">
+    <rect x="200" y="470" width="600" height="12"/>
+    <rect x="200" y="510" width="600" height="18"/>
+    <rect x="200" y="556" width="600" height="26"/>
+    <rect x="200" y="612" width="600" height="38"/>
+  </g>
+
+  <!-- orbit + moon + sparkles -->
+  <ellipse cx="500" cy="400" rx="380" ry="104" fill="none" stroke="#07004F" stroke-width="7" transform="rotate(-14 500 400)"/>
+  <circle cx="838" cy="282" r="20" fill="#07004F"/>
+  <path d="M170 170 l14 38 38 14 -38 14 -14 38 -14 -38 -38 -14 38 -14 Z" fill="#8838E0"/>
+  <path d="M808 560 l10 26 26 10 -26 10 -10 26 -10 -26 -26 -10 26 -10 Z" fill="#EC4899"/>
+
+  <!-- type -->
+  <text x="500" y="850" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="172" letter-spacing="-5" fill="#07004F">STAY</text>
+  <text x="500" y="950" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="92" letter-spacing="14" fill="#8838E0">CURIOUS</text>
+</svg>

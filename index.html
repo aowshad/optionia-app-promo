@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Optionia — Promo Film</title>
+  <link rel="stylesheet" href="src/styles.css" />
+  <script src="src/vendor/gsap.min.js"></script>
+</head>
+<body>
+  <div id="stage">
+    <div id="bg"><div class="glow a"></div><div class="glow b"></div></div>
+    <div id="root">
+      <div id="grid"></div>
+      <div id="world"></div>
+      <div id="overlay"></div>
+    </div>
+  </div>
+  <div id="hud">
+    <button id="play" title="Play / pause (space)">▶</button>
+    <input id="scrub" type="range" min="0" step="0.0166667" value="0" />
+    <span class="t" id="tc">0.00s · bar 1.1</span>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
