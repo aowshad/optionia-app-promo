@@ -24,6 +24,24 @@ To render it yourself: `npm install`, `npm run audio`, then `npm run render`.
 
 Render options: `--fps N --width N --from S --to S --out path --silent`.
 
+## Voice-over version (v1.1)
+
+Same picture, with a narrated mix. Lines, timings and the voice live in `vo/script.json`; the generated
+lines (and their word timings) are committed in `assets/audio/vo/`, so re-mixing needs no API key.
+
+| | |
+|---|---|
+| `npm run vo` | Generate missing lines with ElevenLabs (`ELEVENLABS_API_KEY` in the environment or `.env.local`, never committed). `node render/voiceover.mjs gen 04 --speed 1.05` regenerates one line faster; `… stt 02` transcribes a line to check pronunciation |
+| `npm run stems` | Music and SFX stems before the final limiter → `dist/audio/music_pre.wav`, `sfx_pre.wav` |
+| `npm run mix:vo` | Places every line on its event (`--plan` prints the timing report), ducks the score and remuxes → `dist/optionia-promo_vo.mp4`, `.srt`, stems in `dist/audio/` |
+| `npm run captions:vo` | Burned-in captions → `dist/optionia-promo_vo_captioned.mp4` |
+
+- Voice: Matilda, `eleven_v3`, one seed and one set of settings for every line (v3 has no request stitching).
+  Lines that would end within 0.5 s of their next event are sped up 1.05× with ffmpeg `atempo` (v3 ignores `speed`).
+- Line 04 is cut at word boundaries and each phrase lands on its option's `build` event (±¼ beat).
+- VO chain: high-pass 80 Hz → 2:1 compression → de-ess → 48 kHz. Music ducks 7 dB and SFX 2 dB under speech
+  (150 ms attack with matching look-ahead, 400 ms release). Final mix −14 LUFS, true peak ≤ −1 dBTP.
+
 ## How it's built
 
 - `src/tokens.js` — the single source of truth: BPM 80, `DUR`, `EASE`, `STAGGER`, `SCENE` start bars,

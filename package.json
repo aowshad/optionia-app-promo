@@ -12,7 +12,11 @@
     "audit": "node render/audit-tweens.mjs",
     "review": "node render/review.mjs",
     "audio": "node render/audio.mjs",
-    "build:html": "node render/build-html.mjs"
+    "build:html": "node render/build-html.mjs",
+    "vo": "node render/voiceover.mjs gen",
+    "stems": "node render/audio.mjs --stems",
+    "mix:vo": "node render/mix-vo.mjs",
+    "captions:vo": "node render/captions-vo.mjs"
   },
   "devDependencies": {
     "@fontsource-variable/instrument-sans": "^5.3.0",

@@ -1,0 +1,113 @@
+{
+  "voice": {
+    "id": "XrExE9yKIg1WjnnlVkGX",
+    "name": "Matilda",
+    "model": "eleven_v3",
+    "seed": 4242,
+    "settings": {
+      "stability": 0.5,
+      "speed": 1.0
+    }
+  },
+  "note": "at = when the anchor word starts (seconds into the film). until = the next event the line must clear (0.5s margin). Segments split one generated line at word boundaries and place each part on its own event (±1/4 beat).",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Every store has products that deserve more than size and color.",
+      "at": 0.75,
+      "until": 6.0
+    },
+    {
+      "id": "02",
+      "text": "Meet Optionia. Product options for every store.",
+      "at": 9.2,
+      "until": 15.0
+    },
+    {
+      "id": "03",
+      "text": "Add the options your customers ask for, and sell more of every product.",
+      "at": 16.5,
+      "until": 23.25
+    },
+    {
+      "id": "04",
+      "text": "Engraving text. Gift messages. Print styles, delivery dates, even your customer's own artwork.",
+      "segments": [
+        {
+          "from": "Engraving",
+          "at": 23.25,
+          "event": "build i0 · Engraving text"
+        },
+        {
+          "from": "Gift",
+          "at": 24.0,
+          "event": "build i1 · Gift message"
+        },
+        {
+          "from": "Print",
+          "at": 32.25,
+          "event": "build i7 · Print style"
+        },
+        {
+          "from": "delivery",
+          "at": 33.75,
+          "event": "build i8 · Delivery date"
+        },
+        {
+          "from": "even",
+          "at": 35.25,
+          "event": "build i9 · Upload your artwork"
+        }
+      ],
+      "until": 38.25
+    },
+    {
+      "id": "05",
+      "text": "Sixteen option types, ready when you need them.",
+      "at": 38.25,
+      "until": 45.0
+    },
+    {
+      "id": "06",
+      "text": "Style every option to match your brand. Colors, shapes, borders, or your own CSS.",
+      "segments": [
+        {
+          "from": "Style",
+          "at": 45.75,
+          "event": "headline · Style every option"
+        },
+        {
+          "from": "Colors,",
+          "anchor": "CSS.",
+          "at": 54.0,
+          "event": "CSS editor enters"
+        }
+      ],
+      "until": 57.0
+    },
+    {
+      "id": "07",
+      "text": "Short on time? Pick a theme. One click, and you're done.",
+      "at": 57.3,
+      "until": 69.0
+    },
+    {
+      "id": "08",
+      "text": "Charge for extras, and watch every choice add to the total.",
+      "at": 70.5,
+      "until": 75.0
+    },
+    {
+      "id": "09",
+      "text": "Every custom order arrives with all its details, in one place.",
+      "at": 75.75,
+      "until": 81.75
+    },
+    {
+      "id": "10",
+      "text": "Optionia. Available now on the Shopify App Store.",
+      "at": 83.625,
+      "until": 88.0
+    }
+  ]
+}

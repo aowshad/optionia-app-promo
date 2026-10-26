@@ -258,6 +258,16 @@ function writeWav(path, bus) {
   writeFileSync(path, data);
 }
 
+// 32-bit float stereo WAV (stems keep their full range; nothing is clipped before the final mix).
+function writeWavF32(path, bus) {
+  const n = N, data = Buffer.alloc(44 + n * 8);
+  data.write("RIFF", 0); data.writeUInt32LE(36 + n * 8, 4); data.write("WAVEfmt ", 8); data.writeUInt32LE(16, 16);
+  data.writeUInt16LE(3, 20); data.writeUInt16LE(2, 22); data.writeUInt32LE(SR, 24); data.writeUInt32LE(SR * 8, 28);
+  data.writeUInt16LE(8, 32); data.writeUInt16LE(32, 34); data.write("data", 36); data.writeUInt32LE(n * 8, 40);
+  for (let i = 0; i < n; i++) { data.writeFloatLE(bus.L[i], 44 + i * 8); data.writeFloatLE(bus.R[i], 48 + i * 8); }
+  writeFileSync(path, data);
+}
+
 /* ── Build ───────────────────────────────────────────────────────────────── */
 const film = await openFilm({ width: 960, height: 540 });
 const events = film.info.events;
@@ -274,6 +284,14 @@ reverb(fx, 0.12);
 const mL = lufs(music), fL = lufs(fx);
 gainBus(music, -14 - mL);
 gainBus(fx, -23 - fL);                             // SFX sit 9 dB under the music
+if (process.argv.includes("--stems")) {
+  // Pre-limiter stems for the voice-over mix (render/mix-vo.mjs); leaves dist/mix.wav untouched.
+  mkdirSync("dist/audio", { recursive: true });
+  writeWavF32("dist/audio/music_pre.wav", music);
+  writeWavF32("dist/audio/sfx_pre.wav", fx);
+  console.log(`stems → dist/audio/music_pre.wav, sfx_pre.wav (${used} sounds)`);
+  process.exit(0);
+}
 const mix = new Bus();
 for (let i = 0; i < N; i++) { mix.L[i] = music.L[i] + fx.L[i]; mix.R[i] = music.R[i] + fx.R[i]; }
 limit(mix, -1.5);                                  // sample ceiling low enough that true peak stays < −1 dBTP
